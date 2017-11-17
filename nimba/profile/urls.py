@@ -3,11 +3,12 @@ from django.contrib.auth.views import password_reset, password_reset_done, passw
 
 from .views import (
 				home,
-                connexion,
-                deconnexion,
+                login,
+                logout,
                 register,
                 activate,
-				
+				settings,
+                password,
 	)
 
 
@@ -16,7 +17,7 @@ urlpatterns = [
    
                # url(r'^home/$', home, name="home"),
 
-                url(r'^logout/$', deconnexion, name="logout"),
+                url(r'^logout/$', logout, name="logout"),
 
 
                 url(r'^register/$', register, name="register"),
@@ -25,7 +26,12 @@ urlpatterns = [
 
                 #url(r'^qlq/$', qlq, name="qlq"),
 
-                url(r'^connexion/$', connexion, name="connexion"),
+                url(r'^login/$', login, name="login"),
+
+
+
+                url(r'^settings/$',settings, name='settings'),
+                url(r'^settings/password/$', password, name='password'),
 
 
                 #url(r'^update/$', update_user, name="update_user"),

@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^$', home, name="home"),
 
     url(r'^profile/', include("profile.urls", app_name="profile", namespace="profile")),
+
+     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
 
 

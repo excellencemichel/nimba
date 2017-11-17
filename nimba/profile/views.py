@@ -13,13 +13,13 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.translation import ugettext as _
 
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import get_user_model, authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm, AdminPasswordChangeForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash 
 from django.contrib.sites.shortcuts import get_current_site
 
+
+from social_django.models import UserSocialAuth
 
 
 from .tokens import account_activation_token
@@ -114,7 +114,7 @@ def qlq(request):
 	return render(request, "profile/qlq.html")
 
 
-def connexion(request):
+def login(request):
 	error = False
 
 	if request.method=="POST":
@@ -140,9 +140,79 @@ def connexion(request):
 	    "error":error,
 	}
 
-	return render(request, "profile/connexion.html",context)
+	return render(request, "profile/login.html",context)
 
 
+@login_required
+def settings(request):
+	user = request.user
+
+
+	try:
+		github_login = user.social_auth.get(provider="github")
+	except UserSocialAuth.DoesNotExist:
+		github_login = None
+
+
+
+	try:
+		twitter_login = user.social_auth.get(provider="twitter")
+	except UserSocialAuth.DoesNotExist:
+		twitter_login = None
+
+
+	try:
+		facebook_login = user.social_auth.get(provider="facebook")
+
+	except UserSocialAuth.DoesNotExist:
+		facebook_login = None
+
+
+	can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+	context = {
+	    "github_login" : github_login,
+	    "twitter_login" : twitter_login,
+	    "facebook_login" : facebook_login,
+	    "can_disconnect" : can_disconnect,
+	}
+	return render(request, "profile/settings.html", context)
+
+
+@login_required
+def password(request):
+	if request.user.has_usable_password():
+		PasswordForm = PasswordChangeForm
+
+	else:
+		PasswordForm = AdminPasswordChangeForm
+
+
+	if request.method == "POST":
+		form = PasswordForm(request.user, request.POST)
+		if form.is_valid():
+			form.save()
+
+			update_session_auth_hash(request, form.user)
+			messages.success(request, _("Votre mot de passe a bien été modifié !"))
+			return redirect("home")
+
+		else:
+			messages.error(request, _("Please rectifiez les erreurs suivantes"))
+
+	else:
+		form = PasswordForm(request.user)
+
+
+	context = {
+	     "form":form,
+
+	}
+
+	return render(request, "profile/password.html", context)
+
+
+@login_required
 def update_user(request):
 	if request.method=="POST":
 		form = ProfileUserChangeForm(request.POST or None, request.FILES or None)
@@ -188,6 +258,6 @@ def change_password(request):
 
 
 
-def deconnexion(request):
+def logout(request):
 	logout(request)
 	return redirect(reverse("account_login"))

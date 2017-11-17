@@ -10,7 +10,7 @@
 	Il est authetifié
 </p>
 {% else %}
-    <form action="{% url 'connexion' %}" method="POST">
+    <form action="{% url 'login' %}" method="POST">
     	{% csrf_token %}
     	{{ form|crispy }}
     	<input type="submit" value="Connexion">

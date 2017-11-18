@@ -1,3 +1,5 @@
+
+{% extends "base.html" %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +7,12 @@
 	<title>nimba</title>
 </head>
 <body>
-	<h1>Un marché en ligne de grande envergure est possible</h1>
+
+	{% block content %}
+        	  <div class="div col-2">Side bar gauche</div>
+	         <div class="col-8">Milieu pour les choses à la une</div>
+	         <div class="col-2">Side  bar à droite</div>
+	{% endblock %}
+
 </body>
 </html>

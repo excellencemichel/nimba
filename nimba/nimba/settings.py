@@ -62,6 +62,13 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'profile',
+
+
+    'phone',
+    'frigo',
+    'tele',
+    'habit',
+    'voiture',
 ]
 
 MIDDLEWARE = [

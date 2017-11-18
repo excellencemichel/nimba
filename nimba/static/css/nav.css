@@ -1,0 +1,22 @@
+.menu{
+	height: 66px;
+	background-color: #EEE;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	position: static;
+
+
+}
+
+.menu a{
+	padding: 0 10px;
+}
+@media (max-width: 678px){
+	.menu{
+		flex-direction: column;
+		height: auto;
+	}
+}

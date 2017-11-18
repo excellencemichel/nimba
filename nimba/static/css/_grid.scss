@@ -6,6 +6,7 @@
 $columns : 12!default;
 $gutter : 20px!default;
 
+
 $x-small: 768px!default;
 $small:  678px!default;
 $medium: 992px!default;
@@ -66,6 +67,16 @@ $large: 1200px!default;
 /*------------------------------------*\
                 $Class
 \* ---------------------------------*/
+
+
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
 
 .row{
 	margin:0 $gutter * -0.5;
@@ -143,7 +154,6 @@ $large: 1200px!default;
     .sm-show{display: none;}
     .xs-show{display:none;}
     .md-show{display:none;}
-
 }
 
 

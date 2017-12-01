@@ -1,4 +1,4 @@
-.menu{
+.nav{
 	height: 66px;
 	background-color: #EEE;
 	display: flex;
@@ -11,11 +11,11 @@
 
 }
 
-.menu a{
+.nav a{
 	padding: 0 10px;
 }
 @media (max-width: 678px){
-	.menu{
+	.nav{
 		flex-direction: column;
 		height: auto;
 	}

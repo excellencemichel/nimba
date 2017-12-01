@@ -1,0 +1,22 @@
+
+
+{% if instance.count > 1 %}
+
+<div class="col-12">
+
+ {% for item in instance %}
+
+ {{ item.nom }}
+ {{ item.marque }}
+
+ <img src="{{ item.photo.url }}">
+
+ {% endfor %}
+
+
+</div>
+
+
+
+{% endif %}
+

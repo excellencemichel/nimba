@@ -19,7 +19,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 
 
-from social_django.models import UserSocialAuth
 
 
 from .tokens import account_activation_token
@@ -114,102 +113,36 @@ def qlq(request):
 	return render(request, "profile/qlq.html")
 
 
-def login(request):
-	error = False
+# def connexion(request):
+# 	error = False
 
-	if request.method=="POST":
-		form = ConnexionForm(request.POST)
-		if form.is_valid():
-			username = form.cleaned_data["username"]
-			password = form.cleaned_data["password"]
-
-
-			user = authenticate(username=username, password=password)
-
-			if user:
-				login(request, user)
-				return redirect(reverse("home"))
-
-			else:
-				error = True
-	else:
-		form = ConnexionForm()
-
-	context = {
-	    "form": form,
-	    "error":error,
-	}
-
-	return render(request, "profile/login.html",context)
+# 	if request.method=="POST":
+# 		form = ConnexionForm(request.POST)
+# 		if form.is_valid():
+# 			username = form.cleaned_data["username"]
+# 			password = form.cleaned_data["password"]
 
 
-@login_required
-def settings(request):
-	user = request.user
+# 			user = authenticate(username=username, password=password)
 
+# 			if user:
+# 				login(request, user)
+# 				return redirect(reverse("home"))
 
-	try:
-		github_login = user.social_auth.get(provider="github")
-	except UserSocialAuth.DoesNotExist:
-		github_login = None
+# 			else:
+# 				error = True
+# 	else:
+# 		form = ConnexionForm()
+
+# 	context = {
+# 	    "form": form,
+# 	    "error":error,
+# 	}
+
+# 	return render(request, "profile/login.html",context)
 
 
 
-	try:
-		twitter_login = user.social_auth.get(provider="twitter")
-	except UserSocialAuth.DoesNotExist:
-		twitter_login = None
-
-
-	try:
-		facebook_login = user.social_auth.get(provider="facebook")
-
-	except UserSocialAuth.DoesNotExist:
-		facebook_login = None
-
-
-	can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
-
-	context = {
-	    "github_login" : github_login,
-	    "twitter_login" : twitter_login,
-	    "facebook_login" : facebook_login,
-	    "can_disconnect" : can_disconnect,
-	}
-	return render(request, "profile/settings.html", context)
-
-
-@login_required
-def password(request):
-	if request.user.has_usable_password():
-		PasswordForm = PasswordChangeForm
-
-	else:
-		PasswordForm = AdminPasswordChangeForm
-
-
-	if request.method == "POST":
-		form = PasswordForm(request.user, request.POST)
-		if form.is_valid():
-			form.save()
-
-			update_session_auth_hash(request, form.user)
-			messages.success(request, _("Votre mot de passe a bien été modifié !"))
-			return redirect("home")
-
-		else:
-			messages.error(request, _("Please rectifiez les erreurs suivantes"))
-
-	else:
-		form = PasswordForm(request.user)
-
-
-	context = {
-	     "form":form,
-
-	}
-
-	return render(request, "profile/password.html", context)
 
 
 @login_required
@@ -231,33 +164,33 @@ def update_user(request):
 
 	return render(request, "profile_user/update_user.html", context)
 
-@login_required
-def change_password(request):
-	error = False
-	if request.method=="POST":
-		form = PasswordChangeForm(data=request.POST, user=request.user)
-		if form.is_valid():
-			form.save()
-			update_session_auth_hash(request, form.user)
-			return redirect(home)
+# @login_required
+# def change_password(request):
+# 	error = False
+# 	if request.method=="POST":
+# 		form = PasswordChangeForm(data=request.POST, user=request.user)
+# 		if form.is_valid():
+# 			form.save()
+# 			update_session_auth_hash(request, form.user)
+# 			return redirect(home)
 
-		else:
-			error = True
-
-
-	else:
-		form = PasswordChangeForm(user=request.user)
-
-	context = {
-	   "form":form,
-	   "error":error,
-	}
-
-	return render(request, "profile/change_password.html", context)
+# 		else:
+# 			error = True
 
 
+# 	else:
+# 		form = PasswordChangeForm(user=request.user)
+
+# 	context = {
+# 	   "form":form,
+# 	   "error":error,
+# 	}
+
+# 	return render(request, "profile/change_password.html", context)
 
 
-def logout(request):
-	logout(request)
-	return redirect(reverse("account_login"))
+
+
+# def logout(request):
+# 	logout(request)
+# 	return redirect(reverse("account_login"))

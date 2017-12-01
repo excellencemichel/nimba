@@ -1,4 +1,5 @@
 from datetime import date
+from re import match
 
 from django import forms
 from django.conf import settings
@@ -85,6 +86,16 @@ class UserCreationForm(forms.ModelForm):
 	    			code='password_mismatch',
 	    			)
 	    return password2
+
+
+	def clean_mobile(self):
+		mobile = self.cleaned_data["mobile"]
+		controle = r"^6[2-9][0-9]([ .-]?[0-9]{2}){3}$"
+
+		if match(controle, mobile):
+			return mobile
+		else:
+			raise forms.ValidationError(_("Votre numéro de téléphone ne correspond pas à un numéro de téléphone guinéen"))
 
 
 	def save(self, commit=True):

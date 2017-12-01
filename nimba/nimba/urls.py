@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
-
 from django.conf import settings
 from django.conf.urls.static import static
+
+
+from django.contrib import admin
+
 
 from .views import home
 
@@ -26,12 +28,19 @@ urlpatterns = [
 
     url(r'^$', home, name="home"),
 
-    url(r'^profile/', include("profile.urls", app_name="profile", namespace="profile")),
+    url(r'^account/', include("accounts.urls", app_name="accounts", namespace="accounts")),
 
-     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+
+    url(r'^profile/', include("profile.urls", app_name="profile", namespace="profile")),
+    url(r'^phone/', include("phone.urls", app_name="phone", namespace="phone")),
+    url(r'^electromenager/', include("electromenager.urls", app_name="electromenager", namespace="electromenager")),
+
+
 ]
 
 
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

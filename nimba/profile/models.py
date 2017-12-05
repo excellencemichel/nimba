@@ -57,10 +57,6 @@ class AbstractProfileUser(AbstractBaseUser, PermissionsMixin):
 						),
 		)
 
-	autorisation = models.BooleanField(_("Autorisation"),
-		                                default=False,
-		                                help_text=_("Qui donne l'autorisation"),
-		                                )
 
 	date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 

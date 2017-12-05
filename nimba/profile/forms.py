@@ -19,14 +19,29 @@ class UserCreationForm(forms.ModelForm):
 	    }
 
 
+	username = forms.CharField(
+	    						widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+    	                        )
 
+	first_name = forms.CharField(
+
+		                      widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+    	                        
+		                     )
+
+	last_name = forms.CharField(
+								widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+    	                       )
+
+	email = forms.EmailField(widget = forms.EmailInput(attrs={"class": "form-control input-sm"}),
+		                    )
 	password1 = forms.CharField(
 		label=_("Password"),
-	    widget =forms.PasswordInput
+	    widget =forms.PasswordInput(attrs={"class": "form-control input-md"}),
 	    	   )
 	password2 = forms.CharField(
-	    	label=_("Password confirmation"),
-	    	widget=forms.PasswordInput,
+	    	label=_("Confirmation"),
+	    	widget =forms.PasswordInput(attrs={"class": "form-control input-sm"}),
 	    	help_text=_("Enter the same password as above, for verification.")
 	    	)
 
@@ -38,15 +53,16 @@ class UserCreationForm(forms.ModelForm):
 		                 "1955","1954","1953","1952","1951","1950","1949","1948","1947","1946","1945","1944","1943",
 		                 "1942","1941","1940","1939","1938","1937","1936","1935","1934","1933","1932","1931","1930",)
 
-	birth_day = forms.DateField(widget=forms.SelectDateWidget(years=date_suggession))
+	birth_day = forms.DateField(label=_("Anniversaire"), widget=forms.SelectDateWidget(years=date_suggession,))
 
 	mobile = forms.CharField(label=_("Le numéro de téléphone"),
+	    	               widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
 		                   help_text=_("Vous pouvez séparez les numéro par des espace pour faciter la compréhension")
 		                   )
 
 	class Meta:
 	    model = get_user_model()
-	    fields = ("username", "mobile", "email", "birth_day",)
+	    fields = ("username", "first_name", "last_name", "email", "mobile", "birth_day",)
 
 
 

@@ -14,7 +14,12 @@
     <!-- <link rel="stylesheet" href="{% static 'css/nav.css' %}"> -->
     <!-- <link rel="stylesheet" href="{% static 'css/infobule.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fonts/css/font-awesome.css' %}" rel="stylesheet">
+
+
+{% block css %}
+{% endblock %}
+
 
 
 
@@ -76,8 +81,6 @@
      <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
 
      {% block js %}
-               <script src="{% static 'js/popper.js' %}"></script>
-
      {% endblock %}
   </div>
 </body>

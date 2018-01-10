@@ -2,33 +2,70 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+
+{% block css %}
+   <link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}">
+
+{% endblock %}
+
+
+
+
 	{% block content %}
-	         <div class="col-8">
-              <h1>Un bon</h1>
 
-                 {% if instance_telephone.count > 0 %}
-
-                    <div class="col-12">
-
- 	                   {% for item_telephone in instance_telephone %}
-
- 	                          {{ item_telephone.nom }}
- 	                          {{ item_telephone.marque }}
-
-              	             <img src="{{ item_telephone.photo.url }}" title="{{ item_telephone.description }}">
-
-                            <div class="description"></div>
-
-              	      {% endfor %}
+    <section>
+      <div class="container-fluid">
+        <div class="caontainer">
+          <div class="row">
+    {% for samsung in instance_samsung %}
 
 
-                       </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="imageBox">
+                <img src="{{ samsung.photo.url }}" class="img-responsive">
+                <h5>{{ samsung.marque|linebreaks }}</h5>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                </ul>
+                
+              </div>
+            </div>
+      {% endfor %}
+      {% for iphone in instance_iphone %}
 
-                  {% endif %}
 
-	{% endblock %}
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padd">
+              <div class="imageBox">
+                <img src="{{ iphone.photo.url }}" class="img-responsive">
+                <h5>{{ iphone.marque|linebreaks }}</h5>
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                </ul>
+                
+              </div>
+            </div>
+      {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  {% endblock %}
+
+
 
   {% block js %}
-       <script type="text/javascript" src="{% static 'js/infobule.js' %}"></script>
+       <!-- <script type="text/javascript" src="{% static 'js/infobule.js' %}"></script> -->
 
   {% endblock %}

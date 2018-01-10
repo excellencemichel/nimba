@@ -12,6 +12,9 @@
 {% block menu %}
 {% endblock %}
 
+{% block slider %}
+{% endblock %}
+
 {% block content %}
 
     <div class="container">
@@ -50,6 +53,9 @@
                         <div class="form-group">
                           {{ form.username.label_tag }}
                           {{ form.username }}
+                          {% if form.username.errors %}
+                                {{ form.username.errors }}
+                          {% endif %}
                         </div>
 
                       </div>
@@ -58,6 +64,9 @@
                         <div class="form-group">
                           {{ form.email.label_tag }}
                           {{ form.email }}
+                                                    {% if form.username.errors %}
+                          <small style="color: red">{{ form.username.errors }}</small>
+                          {% endif %}
                           
                         </div>
 
@@ -70,6 +79,9 @@
                         <div class="form-group">
                           {{ form.mobile.label_tag }}
                           {{ form.mobile }}
+                                                    {% if form.mobile.errors %}
+                          <small style="color: red">{{ form.mobile.errors }}</small>
+                          {% endif %}
                           <small style="display: none">{{ form.mobile.help_text }}</small>
                           
                         </div>

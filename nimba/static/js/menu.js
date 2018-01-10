@@ -1,3 +1,3 @@
-$(function(){
- $(".menu_ul").hide();
-});
+// $(function(){
+//  $(".menu_ul").hide();
+// });

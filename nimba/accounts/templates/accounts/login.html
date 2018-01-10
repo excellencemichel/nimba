@@ -8,6 +8,9 @@
 
 {% endblock %}
 
+{% block slider %}
+{% endblock %}
+
 {% block content %}
    <div class="loginBox">
    		<div class="glass">
@@ -40,6 +43,7 @@
 
    	  	<button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
    	  </form>
+	  <p>Se connecter par <a href="{% url 'accounts:facebook_login' %}">Facebook</a></p>
         <a href="#">Mot de passe oublié !</a>
    </div>
 </div>

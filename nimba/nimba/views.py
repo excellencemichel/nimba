@@ -7,7 +7,10 @@ from electromenager.models import Frigo, Climatiseur, Ventilateur, Lave_linge, F
 def home(request):
 
 
-	instance_telephone = Telephone.objects.all()
+	telephone = Telephone.objects.all()
+	instance_samsung = telephone.filter(categorie_telephone__icontains="samsung")
+	instance_iphone = telephone.filter(categorie_telephone__icontains="iphone")
+
 	instance_frigo = Frigo.objects.all()
 	instance_climatiseur = Climatiseur.objects.all()
 	instance_ventilateur = Ventilateur.objects.all()
@@ -15,7 +18,9 @@ def home(request):
 	instance_four = Four.objects.all()
 
 	context = {
-	    "instance_telephone": instance_telephone,
+	    "instance_samsung": instance_samsung,
+	    "instance_iphone": instance_iphone,
+
 	    "instance_frigo": instance_frigo,
 	    "instance_climatiseur": instance_climatiseur,
 	    "instance_ventilateur": instance_ventilateur,
@@ -23,3 +28,8 @@ def home(request):
 	    "instance_four" : instance_four,
 	}
 	return render(request, "home.html", context)
+
+
+
+def hand(request):
+	return render(request, "hand.html")

@@ -20,28 +20,28 @@ class UserCreationForm(forms.ModelForm):
 
 
 	username = forms.CharField(
-	    						widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+	    						widget =forms.TextInput(attrs={"class": "form-control input-sm", "placeholder":"username"}),
     	                        )
 
 	first_name = forms.CharField(
 
-		                      widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+		                      widget =forms.TextInput(attrs={"class": "form-control input-sm", "placeholder":"Prénom"}),
     	                        
 		                     )
 
 	last_name = forms.CharField(
-								widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+								widget =forms.TextInput(attrs={"class": "form-control input-sm", "placeholder":"Nom"}),
     	                       )
 
-	email = forms.EmailField(widget = forms.EmailInput(attrs={"class": "form-control input-sm"}),
+	email = forms.EmailField(widget = forms.EmailInput(attrs={"class": "form-control input-sm", "placeholder":"Adresse mail"}),
 		                    )
 	password1 = forms.CharField(
 		label=_("Password"),
-	    widget =forms.PasswordInput(attrs={"class": "form-control input-md"}),
+	    widget =forms.PasswordInput(attrs={"class": "form-control input-sm", "placeholder":"Password"}),
 	    	   )
 	password2 = forms.CharField(
 	    	label=_("Confirmation"),
-	    	widget =forms.PasswordInput(attrs={"class": "form-control input-sm"}),
+	    	widget =forms.PasswordInput(attrs={"class": "form-control input-sm", "placeholder":"Password"}),
 	    	help_text=_("Enter the same password as above, for verification.")
 	    	)
 
@@ -56,7 +56,7 @@ class UserCreationForm(forms.ModelForm):
 	birth_day = forms.DateField(label=_("Anniversaire"), widget=forms.SelectDateWidget(years=date_suggession,))
 
 	mobile = forms.CharField(label=_("Le numéro de téléphone"),
-	    	               widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+	    	               widget =forms.TextInput(attrs={"class": "form-control input-sm", "placeholder":"Tél"}),
 		                   help_text=_("Vous pouvez séparez les numéro par des espace pour faciter la compréhension")
 		                   )
 

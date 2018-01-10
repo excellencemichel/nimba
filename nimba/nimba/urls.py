@@ -21,12 +21,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 
-from .views import home
+from .views import home, hand
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', home, name="home"),
+    url(r'^hand$', hand, name="hand"),
+
 
     url(r'^account/', include("accounts.urls", app_name="accounts", namespace="accounts")),
 

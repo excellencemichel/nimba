@@ -1,0 +1,44 @@
+.login_register_btn{
+	width: 150px;
+	height: 33px;
+	float: left;
+}
+
+
+head_register_right{
+	width: 500px;
+	height: auto;
+}
+
+.login_register_btn a {
+	display: block;
+	float: left;
+	color: white;
+	text-decoration: none;
+	line-height: 33px;
+	width: 60px;
+}
+
+
+.cart_btn{
+	margin-left: 10px;
+	width: 70px;
+	height:30px;
+	background-color: #fcc508;
+	float: right;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.cart_btn img{
+	// padding: 6px;
+}
+
+.cart_btn span {
+	text-align: center;
+	// line-height: 50px;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	
+}

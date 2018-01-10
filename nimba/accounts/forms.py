@@ -4,6 +4,6 @@ from django import forms
 
 class ConnexionForm(forms.Form):
 	username = forms.CharField(max_length=250,
-	    						widget =forms.TextInput(attrs={"class": "form-control input-sm"}),
+	    						widget =forms.TextInput(attrs={"class": "form-control input-sm", "placeholder":"Username"}),
 		                       )
-	password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control input-sm"}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control input-sm", "placeholder":"Password"}))

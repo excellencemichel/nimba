@@ -23,6 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
+FB_APP_ID = config("FB_APP_ID")
+FB_APP_SECRET = config("FB_APP_SECRET")
 
 
 #La connexion avec d'autres API

@@ -1,0 +1,42 @@
+*{
+	box-sizing: border-box;
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 0 !important;
+}
+
+
+
+.container {
+	padding-right: 7px;
+	padding-left: 7px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+
+
+@media (min-width: 768px){
+	.container{
+		width: 750px;
+	}
+}
+
+
+@media (min-width: 992px){
+	.container {
+		width: 970px;
+	}
+}
+
+
+@media (min-width: 1200px){
+	.container {
+		width: 1170px;
+	}
+}
+
+li{
+	list-style: none;
+}

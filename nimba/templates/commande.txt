@@ -1,0 +1,6 @@
+#La commande pour ouvrir la base de données postgres
+sudo -u postgres psql
+
+
+#Commande pour installer les programmes déjà dans le fichier requremens.txt
+pip install -r requirements.txt

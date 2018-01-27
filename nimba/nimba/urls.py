@@ -20,6 +20,13 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 
+from django.contrib.auth.views import (
+            password_reset,
+            password_reset_done,
+            password_reset_confirm,
+            password_reset_complete,
+    )
+
 
 from .views import home, hand
 
@@ -36,6 +43,14 @@ urlpatterns = [
     url(r'^profile/', include("profile.urls", app_name="profile", namespace="profile")),
     url(r'^phone/', include("phone.urls", app_name="phone", namespace="phone")),
     url(r'^electromenager/', include("electromenager.urls", app_name="electromenager", namespace="electromenager")),
+
+
+
+      url(r'^reset-password/$', password_reset, name="reset_password"),
+      url(r'^reset-password/done/$', password_reset_done, name="password_reset_done"),
+      url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm, name="password_reset_confirm"),
+      url(r'^reset-password/complete/$', password_reset_complete, name="password_reset_complete"), 
+
 
 
 ]

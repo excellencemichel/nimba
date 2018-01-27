@@ -3,7 +3,7 @@ from re import match
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext_lazy as _
 
@@ -65,6 +65,13 @@ class UserCreationForm(forms.ModelForm):
 	    fields = ("username", "first_name", "last_name", "email", "mobile", "birth_day",)
 
 
+	# def __init__(self, *args, **kwargs):
+	# 	super(UserCreationForm, self).__init__(*args, **kwargs)
+	# 	if self._meta.model.USERNAME_FIELD in self.fields:
+	# 		self.fields[self._meta.model.USERNAME_FIELD].widget.attrs.update({"autofocus": True})
+
+
+
 
 	def clean_username(self):
 
@@ -101,6 +108,8 @@ class UserCreationForm(forms.ModelForm):
 	    			self.error_messages['password_mismatch'],
 	    			code='password_mismatch',
 	    			)
+	    self.instance.username = self.cleaned_data.get("username")
+	    password_validation.validate_password(self.cleaned_data.get("password2"), self.instance)
 	    return password2
 
 

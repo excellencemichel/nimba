@@ -49,11 +49,11 @@ def register(request):
 
 			user.is_active = False
 			user.save()
-			messages.success(request, _("Votre compte a été, un email vous a été envoyé pour pouvoir activer le compte."))
+			messages.success(request, _("Votre compte a été créé, un email vous a été envoyé pour pouvoir activer le compte."))
 
 
 			current_site = get_current_site(request)
-			message = render_to_string("profile/acc_active_email.html", {
+			message = render_to_string("profile/sign_up_email.html", {
 				"user": user,
 				"domain": current_site.domain,
 				"uid": urlsafe_base64_encode(force_bytes(user.pk)),
@@ -102,7 +102,8 @@ def activate(request, uidb64, token):
 		user.is_active = True
 		user.save()
 		login(request, user)
-		return HttpResponse("Thank you for your email confirmation. Now you can login your account.")
+		messages.success(request, _("Thank you for your email confirmation. Now you can login your account.") )
+		return redirect(reverse("home"))
 
 	else:
 		return HttpResponse("Activation link is invalid !")

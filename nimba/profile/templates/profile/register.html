@@ -79,9 +79,9 @@
                         <div class="form-group">
                           {{ form.mobile.label_tag }}
                           {{ form.mobile }}
-                                                    {% if form.mobile.errors %}
-                          <small style="color: red">{{ form.mobile.errors }}</small>
-                          {% endif %}
+                              {% if form.mobile.errors %}
+                                 <small style="color: red">{{ form.mobile.errors }}</small>
+                              {% endif %}
                           <small style="display: none">{{ form.mobile.help_text }}</small>
                           
                         </div>
@@ -103,6 +103,9 @@
                         <div class="form-group">
                           {{ form.password1.label_tag }}
                           {{ form.password1 }}
+                              {% if form.password1.errors %}
+                                  <small style="color: red">{{ form.password1.errors }}</small>
+                              {% endif %}
                         </div>
 
                       </div>
@@ -111,6 +114,10 @@
                         <div class="form-group">
                           {{ form.password2.label_tag }}
                           {{ form.password2 }}
+
+                              {% if form.password2.errors %}
+                                 <small style="color: red">{{ form.password2.errors }}</small>
+                              {% endif %}
                         </div>
 
                       </div>
